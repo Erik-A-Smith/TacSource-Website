@@ -1,0 +1,7 @@
+// Save old DB
+>sudo mysqldump tac > dbSave.sql
+
+// Add new migrations/seeds
+>composer dump-autoload
+>php artisan migrate
+>php artisan db:seed --class=DatabaseAddModeratorSeeder

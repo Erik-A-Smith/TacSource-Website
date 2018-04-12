@@ -1,0 +1,7 @@
+.content{
+  margin-top : 56px; /* nav compensation */
+  margin-bottom: 80px; /* nav footer */
+}
+.bg-custom {
+  background-color: #3b4307 !important
+}
