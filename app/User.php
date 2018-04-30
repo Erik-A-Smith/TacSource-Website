@@ -93,4 +93,12 @@ class User extends Authenticatable
       }
       return false;
     }
+
+    public function isPromotable(){
+      if($this->Rank->hasNext()){
+        if($this->Points() >= $this->Rank->next()->points){
+          return true;
+        }
+      }
+    }
 }

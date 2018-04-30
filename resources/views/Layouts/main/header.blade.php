@@ -29,7 +29,11 @@
           </li>
           @if(Auth::user()->isAdmin())
             <li class="nav-item">
-                <a class="nav-link" href="/admin">Officer</a>
+                <a class="nav-link" href="/admin">Officer
+                  @if($officerAlerts > 0)
+                    <span class="badge badge-success">{{$officerAlerts}}</span>
+                  @endif
+                </a>
             </li>
           @endif
           <li class="nav-item">

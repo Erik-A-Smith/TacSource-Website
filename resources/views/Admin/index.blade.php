@@ -16,6 +16,58 @@
 @endpush
 
 @section('content')
+<div class="card">
+  <div class="card-header">
+    Promotions
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Promotion Tracker
+        @if( $awaitingPromotions > 0)
+          <span class="badge badge-success">{{ $awaitingPromotions}}</span>
+        @endif
+      </h5>
+    <p class="card-text">See a list of users who are awaiting a promotion.</p>
+    <a href="/admin/promotion" class="btn btn-primary">Proceed</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Rank Settings
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Manage rank points</h5>
+    <p class="card-text">Change the amount of points necessary top achieve a given rank. Also able to change the color of a rank.</p>
+    <a href="/admin/rank" class="btn btn-primary">Proceed</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Event Settings
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Manage event points</h5>
+    <p class="card-text">Change the amount of points received by attending an event</p>
+    <a href="/admin/eventType" class="btn btn-primary">Proceed</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Role Settings
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Manage role points</h5>
+    <p class="card-text">Change the amount of points received by playing a certain role.</p>
+    <a href="/admin/role" class="btn btn-primary">Proceed</a>
+  </div>
+</div>
+
+
+
+
+<!--
 <div class="container">
   <div class="row align-center">
 
@@ -69,5 +121,5 @@
 
 
   </div>
-</div>
+</div> -->
 @endsection
