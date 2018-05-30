@@ -49,11 +49,7 @@ Route::middleware(['auth'])->post('/admin/eventType/update', 'EventType\EventTyp
 Route::middleware(['auth'])->get('/admin/role', 'Role\RoleController@index')->name("roleIndex");
 Route::middleware(['auth'])->post('/admin/role/update', 'Role\RoleController@update')->name("roleUpdate");
 Route::middleware(['auth'])->get('/admin/promotion', 'Admin\AdminController@promotion')->name("promotionList");
+Route::middleware(['auth'])->get('/admin/audit', 'Admin\AdminController@audit')->name("auditList");
 
 // Index
 Route::get('/', 'Index\IndexController@index')->name("home");
-
-// Secret
-Route::get('/secret', 'Secret\SecretController@index')->name("secret");
-Route::post('/secret', 'Secret\SecretController@generate')->name("secret");
-// Route::get('/secret/show', 'Index\SecretController@show')->name("secret");

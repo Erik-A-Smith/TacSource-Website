@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use DB;
 use Illuminate\Http\Request;
 
+use App\Providers\AuditServiceProvider;
+
 class RegisterController extends Controller
 {
     /*
@@ -82,13 +84,18 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         if ($this->unique($data['username'])) {
-          return User::create([
+          $user = User::create([
               'username' => $data['username'],
               'password' => bcrypt($data['password']),
               "rank" => 1,
               "base_rank" => 1,
               "privilege" => 1
           ]);
+
+          AuditServiceProvider::accountCreated($user);
+
+          return $user;
+          
         } else{
           return false;
         }

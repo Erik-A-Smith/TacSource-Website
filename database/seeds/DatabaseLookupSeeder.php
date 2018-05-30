@@ -62,9 +62,7 @@ class DatabaseLookupSeeder extends Seeder
         "name" => "SPC",
         "rank" => 5,
         "points" => 400,
-        "order" => 5,
         "officer" => false,
-        "officer" => false
       ]);
 
       Rank::create([

@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 // Model inclusions
 use App\EventType;
 
+use App\Providers\AuditServiceProvider;
+
 class EventTypeController extends Controller
 {
     public function index()
@@ -30,6 +32,11 @@ class EventTypeController extends Controller
         } else{
           foreach ($input["eventTypes"] as $key => $eventTypeId) {
             $EventType = EventType::findOrFail($eventTypeId);
+
+            if($input["points"][$key] != $EventType->points){
+              AuditServiceProvider::eventTypePointChange(Auth::User(),$EventType, $EventType->points,$input["points"][$key]);
+            }
+
             $EventType->points = $input["points"][$key];
             $EventType->save();
           }

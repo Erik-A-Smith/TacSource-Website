@@ -64,6 +64,16 @@
   </div>
 </div>
 
+<div class="card">
+  <div class="card-header">
+    Audit Log
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Audit Log Listing</h5>
+    <p class="card-text">See who's done what and where</p>
+    <a href="/admin/audit" class="btn btn-primary">Proceed</a>
+  </div>
+</div>
 
 
 

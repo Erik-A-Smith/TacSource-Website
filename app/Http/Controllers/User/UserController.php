@@ -15,6 +15,8 @@ use App\Rank;
 use App\Privilege;
 use App\ResetToken;
 
+use App\Providers\AuditServiceProvider;
+
 class UserController extends Controller
 {
     public function index(Request $request)
@@ -38,6 +40,17 @@ class UserController extends Controller
     {
       if(Auth::user()->isAdmin()){
         $input = $request->only(["privilege", "rank","base_rank","username"]);
+
+        // Check if their promotion rank has changed
+        if($input["rank"] != $user->rank){
+          AuditServiceProvider::rankChanged($user, $user->rank, $input["rank"]);
+        }
+
+        // Check if their promotion rank has changed
+        if($input["base_rank"] != $user->base_rank){
+          AuditServiceProvider::baseRankChanged($user, $user->base_rank, $input["base_rank"]);
+        }
+
         $user->fill($input);
         $user->save();
         return redirect()->route("userShow",["user" => $user->id])->with("success",["Save successfull!"]);

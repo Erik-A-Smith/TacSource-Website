@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 // Model inclusions
 use App\Admin;
 use App\User;
+use App\AuditLog;
+use URL;
 
 class AdminController extends Controller
 {
@@ -25,6 +27,15 @@ class AdminController extends Controller
       if(Auth::user()->isAdmin()){
         $users = User::all();
         return view('Admin.promotion',compact("users"));
+      }
+    }
+
+    public function audit()
+    {
+      if(Auth::user()->isAdmin()){
+        $auditLogs = AuditLog::orderBy("created_at", "desc")->get();
+        $baseUrl = URL::to("/");
+        return view('Admin.audit',compact("auditLogs","baseUrl"));
       }
     }
 

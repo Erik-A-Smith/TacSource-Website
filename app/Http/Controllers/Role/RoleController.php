@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 // Model inclusions
 use App\Role;
 
+use App\Providers\AuditServiceProvider;
+
 class RoleController extends Controller
 {
     public function index()
@@ -30,6 +32,11 @@ class RoleController extends Controller
         } else{
           foreach ($input["roles"] as $key => $roleId) {
             $Role = Role::findOrFail($roleId);
+
+            if($input["points"][$key] != $Role->points){
+              AuditServiceProvider::rolePointChange(Auth::User(),$Role, $Role->points,$input["points"][$key]);
+            }
+
             $Role->points = $input["points"][$key];
             $Role->save();
           }

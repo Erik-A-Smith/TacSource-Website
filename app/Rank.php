@@ -15,7 +15,7 @@ class Rank extends Model
   * @var array
   */
   protected $fillable = [
-     'name', 'rank', 'points', "color"
+     'name', 'rank', 'points', "color", "officer"
   ];
 
   public function User()
@@ -26,7 +26,10 @@ class Rank extends Model
   public function hasNext()
   {
     $nextLevel= $this->rank + 1;
-    $next = Rank::where("rank",$nextLevel)->first();
+    $next = Rank::where("rank",$nextLevel)
+    ->where("officer",$this->officer)
+    ->first();
+
     if($next){
       return true;
     } else{
@@ -38,9 +41,25 @@ class Rank extends Model
   {
     if($this->hasNext()){
       $nextLevel= $this->rank + 1;
-      return Rank::where("rank",$nextLevel)->first();
+      return Rank::where("rank",$nextLevel)
+      ->where("officer",$this->officer)
+      ->first();
     } else{
       return false;
     }
+  }
+
+  public static function officerRanks()
+  {
+    return Rank::where("officer", true)
+    ->orderBy("rank","asc")
+    ->get();
+  }
+
+  public static function enlistedRanks()
+  {
+    return Rank::where("officer", false)
+    ->orderBy("rank","asc")
+    ->get();
   }
 }

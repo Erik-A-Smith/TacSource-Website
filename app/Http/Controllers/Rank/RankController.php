@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 // Model inclusions
 use App\Rank;
 
+use App\Providers\AuditServiceProvider;
+
 class RankController extends Controller
 {
     public function index()
@@ -26,12 +28,17 @@ class RankController extends Controller
     {
       if(Auth::user()->isAdmin()){
         $input = $request->only("ranks","points","colors");
-        // dd($input);
+
         if( count($input["ranks"]) != count($input["points"]) || count($input["ranks"]) != count($input["colors"]) ) {
           return redirect()->route("rankIndex")->with("error", ["Something when't really wrong, contact your programmer ASAP!"]);
         } else{
           foreach ($input["ranks"] as $key => $rankId) {
             $rank = Rank::findOrFail($rankId);
+
+            if($input["points"][$key] != $rank->points){
+              AuditServiceProvider::rankPointChange(Auth::User(),$rank, $rank->points,$input["points"][$key]);
+            }
+
             $rank->points = $input["points"][$key];
             $rank->color = $input["colors"][$key];
             $rank->save();

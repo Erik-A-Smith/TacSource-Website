@@ -15,6 +15,9 @@ use App\Role;
 use App\Attendance;
 use App\Status;
 
+use App\Providers\AnnouncementServiceProvider;
+use App\Providers\AuditServiceProvider;
+
 class EventController extends Controller
 {
     public function index()
@@ -39,6 +42,7 @@ class EventController extends Controller
       $input["owner"] = Auth::id();
       $input["status"] = Status::Pending()->id;
       $event = Event::create($input);
+      AuditServiceProvider::eventCreated($event);
       return redirect()->route('eventShow',["event" => $event->id])->with("success",["Successfully created event!"]);
     }
 
@@ -118,6 +122,8 @@ class EventController extends Controller
       if(Auth::user()->isModerator()){
         $event->status = Status::Approved()->id;
         $event->save();
+        AuditServiceProvider::eventStatusChange(Auth::user(),$event);
+        AnnouncementServiceProvider::event($event);
         return redirect()->route("eventList")->with("message",["Event Validated!"]);
       }
       return redirect()->route("eventList");
@@ -128,6 +134,7 @@ class EventController extends Controller
       if(Auth::user()->isModerator()){
         $event->status = Status::Revoked()->id;
         $event->save();
+        AuditServiceProvider::eventStatusChange(Auth::user(),$event);
         return redirect()->route("eventList")->with("message",["Event Inalidated!"]);
       }
       return redirect()->route("eventList");

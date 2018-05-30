@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name')->unique();
-            $table->integer('rank')->unique();
+            $table->integer('rank');
             $table->integer('points')->nullable();
             $table->timestamps();
             $table->softDeletes();
