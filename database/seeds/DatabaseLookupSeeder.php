@@ -33,85 +33,101 @@ class DatabaseLookupSeeder extends Seeder
       Rank::create([
         "name" => "RECRUIT",
         "rank" => 1,
-        "points" => 0
+        "points" => 0,
+        "officer" => false
       ]);
 
       Rank::create([
         "name" => "PVT",
         "rank" => 2,
-        "points" => 50
+        "points" => 50,
+        "officer" => false
       ]);
 
       Rank::create([
         "name" => "PV2",
         "rank" => 3,
-        "points" => 100
+        "points" => 100,
+        "officer" => false
       ]);
 
       Rank::create([
         "name" => "PFC",
         "rank" => 4,
-        "points" => 200
+        "points" => 200,
+        "officer" => false
       ]);
 
       Rank::create([
         "name" => "SPC",
         "rank" => 5,
-        "points" => 400
+        "points" => 400,
+        "order" => 5,
+        "officer" => false,
+        "officer" => false
       ]);
 
       Rank::create([
         "name" => "CPL",
         "rank" => 6,
-        "points" => 450
+        "points" => 450,
+        "officer" => false
       ]);
 
       Rank::create([
         "name" => "SGT",
         "rank" => 7,
-        "points" => 600
+        "points" => 600,
+        "officer" => false
       ]);
 
       Rank::create([
         "name" => "SSG",
         "rank" => 8,
-        "points" => 750
+        "points" => 750,
+        "officer" => false
       ]);
 
       Rank::create([
         "name" => "1SG",
         "rank" => 9,
-        "points" => 1000
+        "points" => 1000,
+        "officer" => false
       ]);
 
       Rank::create([
         "name" => "2LT",
-        "rank" => 10,
-        "points" => 600
+        "rank" => 1,
+        "points" => 600,
+        "officer" => true
       ]);
 
       Rank::create([
         "name" => "1LT",
-        "rank" => 11,
-        "points" => 800
+        "rank" => 2,
+        "points" => 800,
+        "officer" => true
       ]);
 
       Rank::create([
         "name" => "CPT",
-        "rank" => 12,
-        "points" => 1200
+        "rank" => 3,
+        "points" => 1200,
+        "officer" => true
       ]);
 
       Rank::create([
         "name" => "MAJ",
-        "rank" => 13,
-        "points" => 1600
+        "rank" => 4,
+        "points" => 1600,
+        "officer" => true
       ]);
 
       Rank::create([
         "name" => "COL",
-        "rank" => 14,
-        "points" => 200
+        "rank" => 5,
+        "points" => 200,
+        "officer" => true
       ]);
 
       // User

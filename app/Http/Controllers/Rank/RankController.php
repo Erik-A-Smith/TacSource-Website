@@ -15,8 +15,9 @@ class RankController extends Controller
     public function index()
     {
       if(Auth::user()->isAdmin()){
-        $ranks = Rank::all();
-        return view('Rank.index',compact("ranks"));
+        $enlistedRanks = Rank::enlistedRanks();
+        $officerRanks = Rank::officerRanks();
+        return view('Rank.index',compact("enlistedRanks","officerRanks"));
       }
       return view('Index.index');
     }
