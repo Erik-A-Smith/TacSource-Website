@@ -32,10 +32,10 @@ class AnnouncementServiceProvider extends ServiceProvider
     Public Static function event(Event $event){
 
       // Production
-      //$webhookurl = "https://discordapp.com/api/webhooks/451498488426004490/TEE1gsIgHFmt3P9pdmx_kqLXAIqlBsULGnWe7r-UqbCL6TShz1y2HEbMehCE0kA30OO2";
+      $webhookurl = "https://discordapp.com/api/webhooks/451498488426004490/TEE1gsIgHFmt3P9pdmx_kqLXAIqlBsULGnWe7r-UqbCL6TShz1y2HEbMehCE0kA30OO2";
 
       // Testing
-      $webhookurl = "https://discordapp.com/api/webhooks/451462855909310466/OICfFkL8nUjstkDJNrs-1Wg9dxfQRDr-E1mhZDfYIr06i3dRhhOAKVvCc7G4tzi4WDIp";
+      //$webhookurl = "https://discordapp.com/api/webhooks/451462855909310466/OICfFkL8nUjstkDJNrs-1Wg9dxfQRDr-E1mhZDfYIr06i3dRhhOAKVvCc7G4tzi4WDIp";
 
       //=======================================================================
       // Compose message. You can use Markdown

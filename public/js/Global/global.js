@@ -1,7 +1,7 @@
 function myFunction() {
     // Declare variables
     var input, filter, ul, li, a, i;
-    input = document.getElementById('inputSearch');
+    input = document.getElementById('myInput');
     filter = input.value.toUpperCase();
     ul = document.getElementById("myUL");
     li = ul.getElementsByTagName('li');
